@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="test">
+	<!-- 根据id查询的sql (statement) -->
+	<select id="findStudentById" parameterType="int" resultType="cn.scut.domain.Student">
+			SELECT * FROM student WHERE id=#{id}
+	</select>
+	<!-- 根据name模糊查询 -->
+	<select id="findStudentByName" parameterType="java.lang.String" resultType="cn.scut.domain.Student">
+			SELECT * FROM student WHERE name LIKE #{value}
+	</select>
+	<!-- 插入操作 -->
+	<insert id="addStudent" parameterType="cn.scut.domain.Student">
+			insert into student(name,age,gender) values(#{name},#{age},#{gender})
+	</insert>
+	
+	<delete id="deleteStudent" parameterType="int">
+		delete from student where id=#{id}
+	</delete>
+	
+	<update id="updateStudent" parameterType="cn.scut.domain.Student">
+		update student set name=#{name},age=#{age},gender=#{gender} where id=#{id}
+	</update>
+</mapper>
+
+
